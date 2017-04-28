@@ -110,8 +110,6 @@ public class UsersListActivity extends AppCompatActivity {
                             }
                         }
 
-
-
                     }
                 },
                 new Response.ErrorListener() {

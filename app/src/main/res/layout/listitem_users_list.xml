@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/listitem_users_list_height">
+    android:layout_height="@dimen/listitem_users_list_height"
+    android:paddingBottom="@dimen/listitem_users_list_padding_bottom">
 
     <ImageView
         android:id="@+id/imageview_user_avatar"
