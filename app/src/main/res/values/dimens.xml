@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="listitem_users_list_height">70dp</dimen>
+    <dimen name="listitem_users_list_avatar">70dp</dimen>
+    <dimen name="listitem_users_list_avatar_padding">0dp</dimen>
+</resources>
