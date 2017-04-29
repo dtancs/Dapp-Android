@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/listitem_users_list_height"
+    android:paddingTop="@dimen/listitem_users_list_padding_bottom"
     android:paddingBottom="@dimen/listitem_users_list_padding_bottom">
 
     <ImageView
         android:id="@+id/imageview_user_avatar"
         android:layout_width="@dimen/listitem_users_list_avatar"
         android:layout_height="@dimen/listitem_users_list_avatar"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:cropToPadding="true"
         android:padding="@dimen/listitem_users_list_avatar_padding"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/placeholder_avatar" />
