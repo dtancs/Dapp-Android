@@ -1,5 +1,6 @@
 package com.tancs.dapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,7 +47,11 @@ public class UsersListActivity extends AppCompatActivity implements UsersListAda
     @Override
     public void onItemClick(int p) {
         User item = (User) mUserslist.get(p);
-        Toast.makeText(this, item.getId(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, item.getId(), Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, UsersProfileActivity.class);
+        intent.putExtra("id",item.getId());
+        startActivity(intent);
     }
 
     private void populateUsersList(){
@@ -56,36 +61,6 @@ public class UsersListActivity extends AppCompatActivity implements UsersListAda
         mRecView.setAdapter(mRecAdapter);
         mRecAdapter.setItemClickCallback(this);
     }
-
-/*    private void requestUser() {
-        String url = "http://192.168.1.101:3000/api/v1/users/1";
-
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        TextView mTxtDisplay;
-                        mTxtDisplay = (TextView) findViewById(R.id.users_textview);
-
-                        mTxtDisplay.setText("Response: " + response.toString());
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-                        TextView mTxtDisplay;
-                        mTxtDisplay = (TextView) findViewById(R.id.users_textview);
-
-                        mTxtDisplay.setText("Response: Error retrieving data");
-                    }
-                });
-
-        // Access the RequestQueue through your singleton class.
-        VolleySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
-    }*/
 
     private void requestUsersList() {
         String url = "http://192.168.1.101:3000/api/v1/users";
