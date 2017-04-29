@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.tancs.dapp.UsersProfileActivity">
+    android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
 
-        <LinearLayout
+    <LinearLayout
+        android:id="@+id/linearlayout_users_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" />
-    </ScrollView>
-</android.support.constraint.ConstraintLayout>
+            android:layout_height="1000dp">
+
+            <ImageView
+                android:id="@+id/imageview_users_profile_avatar"
+                android:layout_width="@dimen/imageview_users_profile_avatar_size"
+                android:layout_height="@dimen/imageview_users_profile_avatar_size"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/imageview_users_profile_avatar_margin_top"
+                app:srcCompat="@drawable/placeholder_avatar" />
+
+            <TextView
+                android:id="@+id/textview_users_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageview_users_profile_avatar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/textview_users_profile_name_margin_top"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textview_users_profile_name_textsize" />
+
+            <Button
+                android:id="@+id/button_users_profile_followbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textview_users_profile_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/textview_users_profile_followbutton_margin_top"
+                android:text="Follow" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

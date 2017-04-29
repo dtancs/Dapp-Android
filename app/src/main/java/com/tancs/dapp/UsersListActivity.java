@@ -72,13 +72,6 @@ public class UsersListActivity extends AppCompatActivity implements UsersListAda
 
                         for(int i = 0; i < jsonArray.length(); i++) {
                             try {
-                                /*JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                mEntries.add(jsonObject.toString());
-
-                                TextView mTxtDisplay;
-                                mTxtDisplay = (TextView) findViewById(R.id.users_textview);
-
-                                mTxtDisplay.setText(jsonObject.toString());*/
 
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 mUserslist.add(new User(jsonObject.getString("id"),jsonObject.getString("name"),jsonObject.getString("email"),jsonObject.getString("created_at"),jsonObject.getString("updated_at")));
