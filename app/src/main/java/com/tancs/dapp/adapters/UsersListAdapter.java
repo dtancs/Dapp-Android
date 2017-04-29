@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.tancs.dapp.R;
 import com.tancs.dapp.models.User;
+import utils.GravatarHelper;
 
 import java.util.List;
 
@@ -40,6 +42,11 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
         User user = listUsers.get(position);
         holder.name.setText(user.getName());
 
+        Picasso.with(this.inflater.getContext())
+                .load(GravatarHelper.getImageURL(user.getEmail()))
+                .placeholder(R.drawable.placeholder_avatar)
+                .error(R.drawable.placeholder_avatar)
+                .into(holder.avatar);
     }
 
     @Override
@@ -51,7 +58,6 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
 
         private TextView name;
         private ImageView avatar;
-        private View container;
 
         public UsersListViewHolder(View itemView) {
             super(itemView);

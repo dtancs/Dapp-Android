@@ -41,8 +41,6 @@ public class UsersListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_users_list);
 
         requestUsersList();
-
-
     }
 
     private void populateUsersList(){
