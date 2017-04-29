@@ -27,7 +27,7 @@ import com.tancs.dapp.models.User;
 
 import utils.VolleySingleton;
 
-public class UsersListActivity extends AppCompatActivity {
+public class UsersListActivity extends AppCompatActivity implements UsersListAdapter.ItemClickCallback {
 
     private ArrayList<String> mEntries;
     private List<User> mUserslist = new ArrayList<User>();
@@ -43,11 +43,18 @@ public class UsersListActivity extends AppCompatActivity {
         requestUsersList();
     }
 
+    @Override
+    public void onItemClick(int p) {
+        User item = (User) mUserslist.get(p);
+        Toast.makeText(this, item.getId(), Toast.LENGTH_SHORT).show();
+    }
+
     private void populateUsersList(){
         mRecView = (RecyclerView)findViewById(R.id.recyclerview_users_list);
         mRecView.setLayoutManager(new LinearLayoutManager(this));
         mRecAdapter = new UsersListAdapter(mUserslist,this);
         mRecView.setAdapter(mRecAdapter);
+        mRecAdapter.setItemClickCallback(this);
     }
 
 /*    private void requestUser() {

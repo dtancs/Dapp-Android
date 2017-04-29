@@ -1,6 +1,7 @@
 package com.tancs.dapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.tancs.dapp.MainActivity;
 import com.tancs.dapp.R;
 import com.tancs.dapp.models.User;
 import utils.GravatarHelper;
@@ -21,8 +23,20 @@ import java.util.List;
 
 public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.UsersListViewHolder>{
 
+
+
     private List<User> listUsers;
     private LayoutInflater inflater;
+
+    private ItemClickCallback itemClickCallback;
+
+    public interface ItemClickCallback {
+        void onItemClick(int p);
+    }
+
+    public void setItemClickCallback(final ItemClickCallback itemClickCallback) {
+        this.itemClickCallback = itemClickCallback;
+    }
 
     public UsersListAdapter (List<User> listData, Context c){
         this.inflater = LayoutInflater.from(c);
@@ -54,16 +68,28 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
         return listUsers.size();
     }
 
-    class UsersListViewHolder extends RecyclerView.ViewHolder{
+    class UsersListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        private View container;
         private TextView name;
         private ImageView avatar;
 
         public UsersListViewHolder(View itemView) {
             super(itemView);
 
+            container = itemView.findViewById(R.id.container_root_userslist);
+            container.setOnClickListener(this);
+
             name = (TextView)itemView.findViewById(R.id.textview_user_name);
             avatar = (ImageView)itemView.findViewById(R.id.imageview_user_avatar);
+
+        }
+
+        @Override
+        public void onClick(View v){
+            if (v.getId() == R.id.container_root_userslist){
+                itemClickCallback.onItemClick(getAdapterPosition());
+            }
         }
     }
 }
