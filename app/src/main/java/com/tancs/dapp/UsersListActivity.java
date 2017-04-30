@@ -30,7 +30,6 @@ import utils.VolleySingleton;
 
 public class UsersListActivity extends AppCompatActivity implements UsersListAdapter.ItemClickCallback {
 
-    private ArrayList<String> mEntries;
     private List<User> mUserslist = new ArrayList<User>();
 
     private RecyclerView mRecView;
@@ -92,7 +91,6 @@ public class UsersListActivity extends AppCompatActivity implements UsersListAda
                     }
                 });
 
-        mEntries = new ArrayList<>();
 
         // Access the RequestQueue through your singleton class.
         VolleySingleton.getInstance(this).addToRequestQueue(request);

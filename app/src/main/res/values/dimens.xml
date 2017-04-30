@@ -15,4 +15,6 @@
     <dimen name="textview_users_profile_name_textsize">30sp</dimen>
 
     <dimen name="textview_users_profile_followbutton_margin_top">20dp</dimen>
+
+    <dimen name="listitem_micropost_list_margin_topbottom">10dp</dimen>
 </resources>

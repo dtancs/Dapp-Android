@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <LinearLayout
         android:id="@+id/linearlayout_users_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1000dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imageview_users_profile_avatar"
@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textview_users_profile_name"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="@dimen/textview_users_profile_followbutton_margin_top"
                 android:text="Follow" />
         </RelativeLayout>
