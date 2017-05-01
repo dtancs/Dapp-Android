@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".UsersListActivity" />
         <activity android:name=".UsersProfileActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".FeedActivity"></activity>
     </application>
 
 </manifest>

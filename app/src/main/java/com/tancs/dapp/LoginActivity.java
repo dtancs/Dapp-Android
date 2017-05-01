@@ -1,5 +1,6 @@
 package com.tancs.dapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
+                            String user_id = response.getString("user_id");
                             String token = response.getString("mobile_token");
 
                             //Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
@@ -70,9 +72,11 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE).edit();
                             editor.putString("email", mEmail);
                             editor.putString("mobile_token", token);
+                            editor.putString("user_id", user_id);
                             editor.apply();
 
-
+                            Intent intent = new Intent(getBaseContext(), FeedActivity.class);
+                            startActivity(intent);
                         }
                         catch(JSONException e) {
                             Toast.makeText(LoginActivity.this, "Unable to parse data !", Toast.LENGTH_SHORT).show();

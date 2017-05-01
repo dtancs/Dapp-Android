@@ -10,7 +10,9 @@ public class Micropost {
             content,
             created_at,
             updated_at,
-            created_time_ago;
+            created_time_ago,
+            email,
+            name;
 
     public Micropost(){
         this.id = "";
@@ -19,6 +21,8 @@ public class Micropost {
         this.created_at = "";
         this.updated_at = "";
         this.created_time_ago = "";
+        this.email = "";
+        this.name = "";
     }
 
     public String getId() {
@@ -67,5 +71,21 @@ public class Micropost {
 
     public void setCreated_time_ago(String created_time_ago) {
         this.created_time_ago = created_time_ago;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
