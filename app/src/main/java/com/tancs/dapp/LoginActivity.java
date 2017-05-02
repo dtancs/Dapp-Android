@@ -25,7 +25,7 @@ import utils.VolleySingleton;
 
 public class LoginActivity extends BaseActivity {
 
-    private String mEmail;
+    private String mEmail, mToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +34,18 @@ public class LoginActivity extends BaseActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(myToolbar);
+
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+        mEmail = prefs.getString("email", "");
+        mToken = prefs.getString("mobile_token", "");
+
+        if(mToken.isEmpty() == false) {
+            Intent intent = new Intent(getBaseContext(), FeedActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void clickLogin(View view) {
-        //Toast.makeText(this, "Button1 Clicked!", Toast.LENGTH_SHORT).show();
-
         requestAuthentication();
     }
 
