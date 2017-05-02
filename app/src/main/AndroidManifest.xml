@@ -22,7 +22,8 @@
         <activity android:name=".UsersListActivity" />
         <activity android:name=".UsersProfileActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".FeedActivity"></activity>
+        <activity android:name=".FeedActivity" />
+        <activity android:name=".BaseActivity"></activity>
     </application>
 
 </manifest>

@@ -31,7 +31,7 @@ import java.util.List;
 import utils.GravatarHelper;
 import utils.VolleySingleton;
 
-public class FeedActivity extends AppCompatActivity implements FeedListAdapter.ItemClickCallback{
+public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemClickCallback{
 
     private RecyclerView mRecView;
     private FeedListAdapter mRecAdapter;

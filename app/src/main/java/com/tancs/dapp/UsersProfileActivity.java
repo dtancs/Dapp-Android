@@ -27,7 +27,7 @@ import com.tancs.dapp.models.Micropost;
 import utils.GravatarHelper;
 import utils.VolleySingleton;
 
-public class UsersProfileActivity extends AppCompatActivity {
+public class UsersProfileActivity extends BaseActivity {
 
     private String mUserID;
     private User mUser;

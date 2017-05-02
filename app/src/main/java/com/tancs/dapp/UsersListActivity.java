@@ -28,7 +28,7 @@ import com.tancs.dapp.models.User;
 
 import utils.VolleySingleton;
 
-public class UsersListActivity extends AppCompatActivity implements UsersListAdapter.ItemClickCallback {
+public class UsersListActivity extends BaseActivity implements UsersListAdapter.ItemClickCallback {
 
     private List<User> mUserslist = new ArrayList<User>();
 
