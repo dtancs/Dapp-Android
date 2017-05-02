@@ -8,8 +8,6 @@
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
-    <include layout="@layout/toolbar_main"/>
-
     <EditText
         android:id="@+id/edittext_login_email"
         android:layout_width="wrap_content"

@@ -32,9 +32,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
-        setSupportActionBar(myToolbar);
-
         SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         mEmail = prefs.getString("email", "");
         mToken = prefs.getString("mobile_token", "");
