@@ -43,6 +43,7 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle("Users");
 
         requestUsersList();
     }

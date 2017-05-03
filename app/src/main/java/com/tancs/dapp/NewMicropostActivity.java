@@ -45,6 +45,7 @@ public class NewMicropostActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle("New post");
 
         mPreviousActivity = getIntent().getStringExtra("previous_activity");
 

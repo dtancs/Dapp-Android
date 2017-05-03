@@ -77,6 +77,7 @@ public class UsersProfileActivity extends BaseActivity {
         private void populateUser() {
             TextView mUserNameView = (TextView) findViewById(R.id.textview_users_profile_name);
             mUserNameView.setText(mTargetUser.getName());
+            getSupportActionBar().setTitle(mTargetUser.getName());
 
             ImageView mUserAvatarView = (ImageView) findViewById(R.id.imageview_users_profile_avatar);
             Picasso.with(UsersProfileActivity.this)
