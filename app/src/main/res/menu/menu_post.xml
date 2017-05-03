@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_count"
+        android:enabled="false"
+        android:title="140"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_post"
+        android:title="@string/menu_post"
+        app:showAsAction="always" />
+</menu>

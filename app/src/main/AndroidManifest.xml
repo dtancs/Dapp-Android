@@ -23,7 +23,8 @@
         <activity android:name=".UsersProfileActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".FeedActivity" />
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".NewMicropostActivity"></activity>
     </application>
 
 </manifest>

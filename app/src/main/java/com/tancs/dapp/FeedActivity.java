@@ -54,7 +54,9 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(FeedActivity.this, "Floatie", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getBaseContext(), NewMicropostActivity.class);
+                startActivity(intent);
             }
         });
 

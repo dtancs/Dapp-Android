@@ -76,6 +76,7 @@ public class LoginActivity extends BaseActivity {
                         try {
                             String user_id = response.getString("user_id");
                             String token = response.getString("mobile_token");
+                            String name = response.getString("user_name");
 
                             //Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
 
@@ -83,6 +84,7 @@ public class LoginActivity extends BaseActivity {
                             editor.putString("email", mEmail);
                             editor.putString("mobile_token", token);
                             editor.putString("user_id", user_id);
+                            editor.putString("user_name", name);
                             editor.apply();
 
                             Intent intent = new Intent(getBaseContext(), FeedActivity.class);

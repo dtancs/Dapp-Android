@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_main"/>
+
+    <EditText
+        android:id="@+id/edittext_newpost_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageview_newpost_avatar"
+        android:layout_marginTop="46dp"
+        android:ems="10"
+        android:hint="New post"
+        android:inputType="textMultiLine"
+        android:maxLength="140" />
+
+    <ImageView
+        android:id="@+id/imageview_newpost_avatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/placeholder_avatar" />
+
+    <TextView
+        android:id="@+id/textview_newpost_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageview_newpost_avatar"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@+id/imageview_newpost_avatar"
+        android:layout_toRightOf="@+id/imageview_newpost_avatar"
+        android:text="Tan Cher Shen"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+</RelativeLayout>
