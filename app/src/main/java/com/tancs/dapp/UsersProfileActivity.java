@@ -1,12 +1,13 @@
 package com.tancs.dapp;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +31,10 @@ import utils.VolleySingleton;
 
 public class UsersProfileActivity extends BaseActivity {
 
+
     private String mUserID;
-    private User mUser;
+    private String mTargetID;
+    private User mTargetUser;
     private List<Micropost> mPostlist = new ArrayList<>();
 
     @Override
@@ -42,8 +45,26 @@ public class UsersProfileActivity extends BaseActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(myToolbar);
 
-        mUserID = getIntent().getStringExtra("id");
-        //Toast.makeText(this, mUserID, Toast.LENGTH_SHORT).show();
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+        mUserID = prefs.getString("user_id", "");
+        mTargetID = getIntent().getStringExtra("id");
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_users_profile_newpost);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getBaseContext(), NewMicropostActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        if(mUserID.equals(mTargetID) == false){
+            fab.setEnabled(false);
+            fab.setVisibility(View.GONE);
+        }
+
+        //Toast.makeText(this, mTargetID, Toast.LENGTH_SHORT).show();
 
         requestUser();
 
@@ -54,11 +75,11 @@ public class UsersProfileActivity extends BaseActivity {
 
         private void populateUser() {
             TextView mUserNameView = (TextView) findViewById(R.id.textview_users_profile_name);
-            mUserNameView.setText(mUser.getName());
+            mUserNameView.setText(mTargetUser.getName());
 
             ImageView mUserAvatarView = (ImageView) findViewById(R.id.imageview_users_profile_avatar);
             Picasso.with(UsersProfileActivity.this)
-                    .load(GravatarHelper.getImageURL(mUser.getEmail()))
+                    .load(GravatarHelper.getImageURL(mTargetUser.getEmail()))
                     .placeholder(R.drawable.placeholder_avatar)
                     .error(R.drawable.placeholder_avatar)
                     .into(mUserAvatarView);
@@ -71,7 +92,7 @@ public class UsersProfileActivity extends BaseActivity {
                 myView.addView(view);
 
                 TextView mMicropostUserNameView = (TextView) view.findViewById(R.id.textview_micropost_user_name);
-                mMicropostUserNameView.setText(mUser.getName());
+                mMicropostUserNameView.setText(mTargetUser.getName());
 
                 TextView mMicropostTimeAgoView = (TextView) view.findViewById(R.id.textview_micropost_timeago);
                 mMicropostTimeAgoView.setText(mPostlist.get(i).getCreated_time_ago());
@@ -81,7 +102,7 @@ public class UsersProfileActivity extends BaseActivity {
 
                 ImageView mUserPostAvatarView = (ImageView) view.findViewById(R.id.imageview_micropost_user_avatar);
                 Picasso.with(UsersProfileActivity.this)
-                        .load(GravatarHelper.getImageURL(mUser.getEmail()))
+                        .load(GravatarHelper.getImageURL(mTargetUser.getEmail()))
                         .placeholder(R.drawable.placeholder_avatar)
                         .error(R.drawable.placeholder_avatar)
                         .into(mUserPostAvatarView);
@@ -89,7 +110,7 @@ public class UsersProfileActivity extends BaseActivity {
         }
 
        private void requestUser() {
-        String url = "http://192.168.1.101:3000/api/v1/users/" + mUserID;
+        String url = "http://192.168.1.101:3000/api/v1/users/" + mTargetID;
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -98,7 +119,7 @@ public class UsersProfileActivity extends BaseActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            mUser = new User(response.getString("id"), response.getString("name"), response.getString("email"), response.getString("created_at"), response.getString("updated_at"));
+                            mTargetUser = new User(response.getString("id"), response.getString("name"), response.getString("email"), response.getString("created_at"), response.getString("updated_at"));
                             populateUser();
 
                             JSONArray mPosts = response.getJSONArray("microposts");

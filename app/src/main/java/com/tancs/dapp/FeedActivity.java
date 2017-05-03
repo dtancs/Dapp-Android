@@ -50,7 +50,7 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(myToolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_feed_newpost);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
