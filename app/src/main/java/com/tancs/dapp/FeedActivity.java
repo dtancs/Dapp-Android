@@ -56,6 +56,7 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
             public void onClick(View view) {
 
                 Intent intent = new Intent(getBaseContext(), NewMicropostActivity.class);
+                intent.putExtra("previous_activity","FeedActivity");
                 startActivity(intent);
             }
         });

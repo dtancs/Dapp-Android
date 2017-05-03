@@ -55,6 +55,7 @@ public class UsersProfileActivity extends BaseActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(getBaseContext(), NewMicropostActivity.class);
+                intent.putExtra("previous_activity","UsersProfileActivity");
                 startActivity(intent);
             }
         });

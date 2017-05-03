@@ -36,6 +36,8 @@ public class NewMicropostActivity extends AppCompatActivity {
 
     private MenuItem mCount;
 
+    private String mPreviousActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,8 @@ public class NewMicropostActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(myToolbar);
+
+        mPreviousActivity = getIntent().getStringExtra("previous_activity");
 
         SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         mEmail = prefs.getString("email", "");
@@ -129,9 +133,20 @@ public class NewMicropostActivity extends AppCompatActivity {
 
                         Toast.makeText(NewMicropostActivity.this, "Post successful!", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(getBaseContext(), FeedActivity.class);
-                        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
+                        if(mPreviousActivity.equals("FeedActivity")){
+                            Intent intent = new Intent(getBaseContext(), FeedActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+                        else {
+                            Intent intent = new Intent(getBaseContext(), UsersProfileActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.putExtra("id",mUserID);
+                            startActivity(intent);
+                        }
+
+
+
 
                     }
                 }, new Response.ErrorListener() {
