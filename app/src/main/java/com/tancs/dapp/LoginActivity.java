@@ -46,6 +46,11 @@ public class LoginActivity extends BaseActivity {
         requestAuthentication();
     }
 
+    public void clickSignup(View view){
+        Intent intent = new Intent(getBaseContext(), SignupActivity.class);
+        startActivity(intent);
+    }
+
     private void requestAuthentication() {
         String url = "http://192.168.1.101:3000/api/v1/login/";
 

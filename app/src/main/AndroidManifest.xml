@@ -25,7 +25,8 @@
         <activity android:name=".FeedActivity" />
         <activity android:name=".BaseActivity" />
         <activity android:name=".NewMicropostActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".SignupActivity"></activity>
     </application>
 
 </manifest>
