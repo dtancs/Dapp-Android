@@ -42,6 +42,8 @@ public class BaseActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_settings:
+                Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
+                startActivity(intent);
                 return true;
 
             default:

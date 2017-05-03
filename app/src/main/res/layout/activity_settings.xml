@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar_main"
+        android:id="@+id/include" />
+
+    <EditText
+        android:id="@+id/edittext_settings_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text|textPersonName"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/edittext_setting_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/edittext_settings_name"
+        android:layout_alignRight="@+id/edittext_settings_name"
+        android:layout_below="@+id/edittext_settings_name"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/edittext_settings_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edittext_setting_email"
+        android:layout_alignStart="@+id/edittext_setting_email"
+        android:layout_below="@+id/edittext_setting_email"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:hint="New password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/edittext_setting_confirmpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edittext_settings_password"
+        android:layout_alignStart="@+id/edittext_settings_password"
+        android:layout_below="@+id/edittext_settings_password"
+        android:layout_marginTop="26dp"
+        android:ems="10"
+        android:hint="Confirm new password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/button_settings_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittext_setting_confirmpassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:onClick="clickLogin"
+        android:text="Update" />
+
+</RelativeLayout>
