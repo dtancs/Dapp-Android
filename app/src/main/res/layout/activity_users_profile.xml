@@ -81,6 +81,8 @@
                     android:layout_alignBottom="@+id/imageview_users_profile_avatar"
                     android:layout_toLeftOf="@+id/imageview_users_profile_avatar"
                     android:layout_toStartOf="@+id/imageview_users_profile_avatar"
+                    android:onClick="clickFollowing"
+                    android:clickable="true"
                     android:layout_marginBottom="48dp" />
 
                 <TextView
@@ -95,6 +97,8 @@
                     android:layout_toRightOf="@+id/imageview_users_profile_avatar"
                     android:text="Followers\n-"
                     android:textAlignment="center"
+                    android:onClick="clickFollowers"
+                    android:clickable="true"
                     android:textSize="18sp" />
             </RelativeLayout>
         </LinearLayout>

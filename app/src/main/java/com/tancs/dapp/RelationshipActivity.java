@@ -77,6 +77,7 @@ public class RelationshipActivity extends BaseActivity implements UsersListAdapt
 
         mTargetID = getIntent().getStringExtra("id");
         mActionType = getIntent().getStringExtra("action_type");
+        getSupportActionBar().setTitle(mActionType);
 
         requestRelationshipsList();
     }

@@ -111,6 +111,20 @@ public class UsersProfileActivity extends BaseActivity {
         requestUser();
 
     }
+
+    public void clickFollowers(View view) {
+        Intent intent = new Intent(getBaseContext(), RelationshipActivity.class);
+        intent.putExtra("id",mTargetID);
+        intent.putExtra("action_type","Followers");
+        startActivity(intent);
+    }
+    public void clickFollowing(View view) {
+        Intent intent = new Intent(getBaseContext(), RelationshipActivity.class);
+        intent.putExtra("id",mTargetID);
+        intent.putExtra("action_type","Following");
+        startActivity(intent);
+    }
+
     public void clickFollow(View view) {
         if(mFollowButton.getText().toString().contentEquals("Follow")) {
             requestFollow("Follow");
