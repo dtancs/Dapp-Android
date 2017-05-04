@@ -7,7 +7,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tancs.dapp.ProfileActivity">
+    tools:context="com.tancs.dapp.UsersProfileActivity">
 
     <include layout="@layout/toolbar_main"/>
 
@@ -66,7 +66,36 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="20dp"
                     android:layout_marginTop="@dimen/textview_users_profile_followbutton_margin_top"
+                    android:onClick="clickFollow"
                     android:text="Follow" />
+
+                <TextView
+                    android:id="@+id/textview_users_profile_following"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Following\n-"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_alignBottom="@+id/imageview_users_profile_avatar"
+                    android:layout_toLeftOf="@+id/imageview_users_profile_avatar"
+                    android:layout_toStartOf="@+id/imageview_users_profile_avatar"
+                    android:layout_marginBottom="48dp" />
+
+                <TextView
+                    android:id="@+id/textview_users_profile_followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textview_users_profile_following"
+                    android:layout_alignBottom="@+id/textview_users_profile_following"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/imageview_users_profile_avatar"
+                    android:layout_toRightOf="@+id/imageview_users_profile_avatar"
+                    android:text="Followers\n-"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
