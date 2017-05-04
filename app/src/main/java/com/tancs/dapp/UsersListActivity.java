@@ -77,7 +77,7 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
 
     @Override
     public void onItemClick(int p) {
-        User item = (User) mUserslist.get(p);
+        User item = mUserslist.get(p);
         //Toast.makeText(this, item.getId(), Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, UsersProfileActivity.class);

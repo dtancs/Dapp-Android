@@ -49,8 +49,16 @@ public class BaseActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case 3:
+                intent = new Intent(getBaseContext(), RelationshipActivity.class);
+                intent.putExtra("id",prefs.getString("user_id", ""));
+                intent.putExtra("action_type","Followers");
+                startActivity(intent);
                 break;
             case 4:
+                intent = new Intent(getBaseContext(), RelationshipActivity.class);
+                intent.putExtra("id",prefs.getString("user_id", ""));
+                intent.putExtra("action_type","Following");
+                startActivity(intent);
                 break;
             default:
         }

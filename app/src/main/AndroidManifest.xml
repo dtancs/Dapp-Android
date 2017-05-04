@@ -26,7 +26,8 @@
         <activity android:name=".BaseActivity" />
         <activity android:name=".NewMicropostActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".SignupActivity"></activity>
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".RelationshipActivity"></activity>
     </application>
 
 </manifest>
