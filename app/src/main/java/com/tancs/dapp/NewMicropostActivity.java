@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -27,7 +32,7 @@ import org.json.JSONObject;
 import utils.GravatarHelper;
 import utils.VolleySingleton;
 
-public class NewMicropostActivity extends AppCompatActivity {
+public class NewMicropostActivity extends BaseActivity {
 
     private String mUserID;
     private String mEmail;
@@ -46,6 +51,28 @@ public class NewMicropostActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setTitle("New post");
+
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(myToolbar)
+                .withTranslucentStatusBar(false)
+                .withSelectedItem(-1)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName("Feed"),
+                        new PrimaryDrawerItem().withName("Profile"),
+                        new PrimaryDrawerItem().withName("Users"),
+                        new PrimaryDrawerItem().withName("Followers"),
+                        new PrimaryDrawerItem().withName("Following")
+
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        switchActivity(position);
+                        return true;
+                    }
+                })
+                .build();
 
         mPreviousActivity = getIntent().getStringExtra("previous_activity");
 

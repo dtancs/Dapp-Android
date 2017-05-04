@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.tancs.dapp.adapters.UsersListAdapter;
 
 import org.json.JSONArray;
@@ -44,6 +49,28 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setTitle("Users");
+
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(myToolbar)
+                .withTranslucentStatusBar(false)
+                .withSelectedItem(-1)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName("Feed"),
+                        new PrimaryDrawerItem().withName("Profile"),
+                        new PrimaryDrawerItem().withName("Users"),
+                        new PrimaryDrawerItem().withName("Followers"),
+                        new PrimaryDrawerItem().withName("Following")
+
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        switchActivity(position);
+                        return true;
+                    }
+                })
+                .build();
 
         requestUsersList();
     }

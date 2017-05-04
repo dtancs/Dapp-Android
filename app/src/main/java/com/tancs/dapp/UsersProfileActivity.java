@@ -19,6 +19,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.squareup.picasso.Picasso;
 import com.tancs.dapp.models.User;
 
@@ -52,6 +56,28 @@ public class UsersProfileActivity extends BaseActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(myToolbar);
+
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(myToolbar)
+                .withTranslucentStatusBar(false)
+                .withSelectedItem(-1)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName("Feed"),
+                        new PrimaryDrawerItem().withName("Profile"),
+                        new PrimaryDrawerItem().withName("Users"),
+                        new PrimaryDrawerItem().withName("Followers"),
+                        new PrimaryDrawerItem().withName("Following")
+
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        switchActivity(position);
+                        return true;
+                    }
+                })
+                .build();
 
         SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         mUserID = prefs.getString("user_id", "");

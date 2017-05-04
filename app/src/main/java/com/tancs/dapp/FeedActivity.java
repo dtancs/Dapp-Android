@@ -17,6 +17,11 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.squareup.picasso.Picasso;
 import com.tancs.dapp.adapters.FeedListAdapter;
 import com.tancs.dapp.models.Micropost;
@@ -28,6 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import utils.GravatarHelper;
 import utils.VolleySingleton;
@@ -50,6 +56,28 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setTitle("Feed");
+
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(myToolbar)
+                .withTranslucentStatusBar(false)
+                .withSelectedItem(-1)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName("Feed"),
+                        new PrimaryDrawerItem().withName("Profile"),
+                        new PrimaryDrawerItem().withName("Users"),
+                        new PrimaryDrawerItem().withName("Followers"),
+                        new PrimaryDrawerItem().withName("Following")
+
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        switchActivity(position);
+                        return true;
+                    }
+                })
+                .build();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_feed_newpost);
         fab.setOnClickListener(new View.OnClickListener() {

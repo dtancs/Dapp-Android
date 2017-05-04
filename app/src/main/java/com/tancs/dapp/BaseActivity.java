@@ -28,6 +28,34 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
+    public void switchActivity(int selection) {
+        //Toast.makeText(BaseActivity.this, String.valueOf(selection), Toast.LENGTH_SHORT).show();
+
+        Intent intent;
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
+
+        switch (selection){
+            case 0:
+                intent = new Intent(getBaseContext(), FeedActivity.class);
+                startActivity(intent);
+                break;
+            case 1:
+                intent = new Intent(getBaseContext(), UsersProfileActivity.class);
+                intent.putExtra("id",prefs.getString("user_id", ""));
+                startActivity(intent);
+                break;
+            case 2:
+                intent = new Intent(getBaseContext(), UsersListActivity.class);
+                startActivity(intent);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
