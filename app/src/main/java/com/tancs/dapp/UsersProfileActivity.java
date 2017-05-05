@@ -112,6 +112,17 @@ public class UsersProfileActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(mPostlist.size() > 0) {
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
+    }
+
     public void clickFollowers(View view) {
         Intent intent = new Intent(getBaseContext(), RelationshipActivity.class);
         intent.putExtra("id",mTargetID);

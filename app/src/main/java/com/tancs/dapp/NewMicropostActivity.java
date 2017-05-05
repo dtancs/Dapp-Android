@@ -160,20 +160,7 @@ public class NewMicropostActivity extends BaseActivity {
                     public void onResponse(JSONObject response) {
 
                         Toast.makeText(NewMicropostActivity.this, "Post successful!", Toast.LENGTH_SHORT).show();
-
-                        if(mPreviousActivity.equals("FeedActivity")){
-                            finish();
-                        }
-                        else {
-                            Intent intent = new Intent(getBaseContext(), UsersProfileActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            intent.putExtra("id",mUserID);
-                            startActivity(intent);
-                            finish();
-                        }
-
-
-
+                        finish();
 
                     }
                 }, new Response.ErrorListener() {
