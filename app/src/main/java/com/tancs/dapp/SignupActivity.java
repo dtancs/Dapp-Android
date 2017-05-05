@@ -100,6 +100,7 @@ public class SignupActivity extends BaseActivity {
                             Intent intent = new Intent(getBaseContext(), UsersProfileActivity.class);
                             intent.putExtra("id",mUserID);
                             startActivity(intent);
+                            finish();
                         }
                         catch(JSONException e) {
                             Toast.makeText(SignupActivity.this, "Unable to parse data !", Toast.LENGTH_SHORT).show();

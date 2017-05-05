@@ -134,6 +134,7 @@ public class SettingsActivity extends BaseActivity {
                             Intent intent = new Intent(getBaseContext(), UsersProfileActivity.class);
                             intent.putExtra("id",mUserID);
                             startActivity(intent);
+                            finish();
                         }
                         catch(JSONException e) {
                             Toast.makeText(SettingsActivity.this, "Unable to parse data !", Toast.LENGTH_SHORT).show();

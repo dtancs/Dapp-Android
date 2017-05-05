@@ -165,12 +165,14 @@ public class NewMicropostActivity extends BaseActivity {
                             Intent intent = new Intent(getBaseContext(), FeedActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
+                            finish();
                         }
                         else {
                             Intent intent = new Intent(getBaseContext(), UsersProfileActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             intent.putExtra("id",mUserID);
                             startActivity(intent);
+                            finish();
                         }
 
 

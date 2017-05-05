@@ -39,6 +39,7 @@ public class LoginActivity extends BaseActivity {
         if(mToken.isEmpty() == false) {
             Intent intent = new Intent(getBaseContext(), FeedActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 
@@ -94,6 +95,7 @@ public class LoginActivity extends BaseActivity {
 
                             Intent intent = new Intent(getBaseContext(), FeedActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                         catch(JSONException e) {
                             Toast.makeText(LoginActivity.this, "Unable to parse data !", Toast.LENGTH_SHORT).show();
