@@ -183,7 +183,7 @@ public class UsersProfileActivity extends BaseActivity {
         }
 
        private void requestUser() {
-        String url = "http://192.168.1.101:3000/api/v1/users/" + mTargetID;
+        String url = getString(R.string.apiBaseURL) + "/api/v1/users/" + mTargetID;
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -254,7 +254,7 @@ public class UsersProfileActivity extends BaseActivity {
     }
 
     private void requestFollow(final String actionType) {
-        String url = "http://192.168.1.101:3000/api/v1/relationship";
+        String url = getString(R.string.apiBaseURL) + "/api/v1/relationship";
 
         JSONObject params = new JSONObject();
         JSONObject relationship = new JSONObject();

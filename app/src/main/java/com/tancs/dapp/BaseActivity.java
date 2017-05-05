@@ -97,7 +97,7 @@ public class BaseActivity extends AppCompatActivity {
         user_id = prefs.getString("user_id", "");
         token = prefs.getString("mobile_token", "");
 
-        String url = "http://192.168.1.101:3000/api/v1/logout/" + user_id + "/" + token;
+        String url = getString(R.string.apiBaseURL) + "/api/v1/logout/" + user_id + "/" + token;
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.DELETE, url, null, new Response.Listener<JSONObject>() {

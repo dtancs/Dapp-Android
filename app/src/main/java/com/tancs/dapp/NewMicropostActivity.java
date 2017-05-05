@@ -134,7 +134,7 @@ public class NewMicropostActivity extends BaseActivity {
     }
 
     private void requestPost() {
-        String url = "http://192.168.1.101:3000/api/v1/microposts";
+        String url = getString(R.string.apiBaseURL) + "/api/v1/microposts";
 
         JSONObject params = new JSONObject();
         JSONObject session = new JSONObject();

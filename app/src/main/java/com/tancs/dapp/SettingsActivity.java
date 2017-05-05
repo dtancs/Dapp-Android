@@ -93,7 +93,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void requestUpdate() {
-        String url = "http://192.168.1.101:3000/api/v1/users/" + mUserID;
+        String url = getString(R.string.apiBaseURL) + "/api/v1/users/" + mUserID;
 
         JSONObject params = new JSONObject();
         JSONObject user = new JSONObject();

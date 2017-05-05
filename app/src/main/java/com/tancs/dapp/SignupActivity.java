@@ -57,7 +57,7 @@ public class SignupActivity extends BaseActivity {
     }
 
     private void requestSignup() {
-        String url = "http://192.168.1.101:3000/api/v1/users/";
+        String url = getString(R.string.apiBaseURL) + "/api/v1/users/";
 
         JSONObject params = new JSONObject();
         JSONObject user = new JSONObject();

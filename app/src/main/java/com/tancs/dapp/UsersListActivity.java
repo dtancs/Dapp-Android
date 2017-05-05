@@ -94,7 +94,7 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
     }
 
     private void requestUsersList() {
-        String url = "http://192.168.1.101:3000/api/v1/users";
+        String url = getString(R.string.apiBaseURL) + "/api/v1/users";
 
         JsonArrayRequest request = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {

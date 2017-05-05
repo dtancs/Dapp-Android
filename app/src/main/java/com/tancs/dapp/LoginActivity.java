@@ -53,7 +53,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void requestAuthentication() {
-        String url = "http://192.168.1.101:3000/api/v1/login/";
+        String url = getString(R.string.apiBaseURL) + "/api/v1/login/";
 
         JSONObject params = new JSONObject();
         JSONObject session = new JSONObject();
