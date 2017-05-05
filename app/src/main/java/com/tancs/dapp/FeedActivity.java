@@ -48,6 +48,8 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
 
     private List<Micropost> mPostlist = new ArrayList<>();
 
+    private boolean isRefresh = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +100,17 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        if(mRecAdapter != null) {
+            isRefresh = true;
+            mPostlist.clear();
+            requestUsersList();
+        }
+    }
+
+    @Override
     public void onItemClick(int p) {
         Micropost item = (Micropost) mPostlist.get(p);
         //Toast.makeText(this, item.getId(), Toast.LENGTH_SHORT).show();
@@ -143,7 +156,12 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
                             }
                         }
 
-                        populatePosts();
+                        if(isRefresh == false) {
+                            populatePosts();
+                        }
+                        else{
+                            mRecAdapter.notifyDataSetChanged();
+                        }
                     }
                 },
                 new Response.ErrorListener() {

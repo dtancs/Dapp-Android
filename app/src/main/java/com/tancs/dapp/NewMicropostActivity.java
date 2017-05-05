@@ -162,9 +162,6 @@ public class NewMicropostActivity extends BaseActivity {
                         Toast.makeText(NewMicropostActivity.this, "Post successful!", Toast.LENGTH_SHORT).show();
 
                         if(mPreviousActivity.equals("FeedActivity")){
-                            Intent intent = new Intent(getBaseContext(), FeedActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
                             finish();
                         }
                         else {
