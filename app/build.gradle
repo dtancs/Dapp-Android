@@ -19,11 +19,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue 'string', 'apiBaseURL', '"realease version"'
+            resValue 'string', 'apiBaseURL', '"https://tancs-dapp.herokuapp.com/"'
         }
         debug {
-            //resValue 'string', 'apiBaseURL', '"http://192.168.1.101:3000/"'
-            resValue 'string', 'apiBaseURL', '"https://tancs-dapp.herokuapp.com/"'
+            resValue 'string', 'apiBaseURL', '"http://192.168.1.101:3000/"'
+            //resValue 'string', 'apiBaseURL', '"https://tancs-dapp.herokuapp.com/"'
         }
     }
 }
