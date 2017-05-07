@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,11 @@ public class UsersProfileActivity extends BaseActivity {
     private TextView mFollowingView;
     private Button mFollowButton;
 
+    JsonObjectRequest jsObjRequest;
+    JsonObjectRequest jsObjRequestFollow;
+
+    private ProgressBar mProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +68,7 @@ public class UsersProfileActivity extends BaseActivity {
                 .withToolbar(myToolbar)
                 .withTranslucentStatusBar(false)
                 .withSelectedItem(-1)
+                .withCloseOnClick(true)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Feed"),
                         new PrimaryDrawerItem().withName("Profile"),
@@ -95,6 +102,8 @@ public class UsersProfileActivity extends BaseActivity {
             }
         });
 
+        mProgressBar = (ProgressBar) findViewById(R.id.progressbar_users_profile);
+
         mFollowButton = (Button) findViewById(R.id.button_users_profile_followbutton);
         mFollowersView = (TextView) findViewById(R.id.textview_users_profile_followers);
         mFollowingView = (TextView) findViewById(R.id.textview_users_profile_following);
@@ -127,8 +136,14 @@ public class UsersProfileActivity extends BaseActivity {
     protected void onStop () {
         super.onStop();
 
-        VolleySingleton.getInstance(this).getRequestQueue().cancelAll("requestUser");
-        VolleySingleton.getInstance(this).getRequestQueue().cancelAll("requestFollow");
+         if(jsObjRequest != null){
+             jsObjRequest.cancel();
+         }
+
+        if(jsObjRequestFollow != null){
+            jsObjRequestFollow.cancel();
+        }
+
     }
 
     public void clickFollowers(View view) {
@@ -191,13 +206,17 @@ public class UsersProfileActivity extends BaseActivity {
         }
 
        private void requestUser() {
+
+        mProgressBar.setVisibility(View.VISIBLE);
         String url = getString(R.string.apiBaseURL) + "/api/v1/users/" + mTargetID;
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+        jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
+
+                        mProgressBar.setVisibility(View.GONE);
 
                         try {
                             mTargetUser = new User(response.getString("id"), response.getString("name"), response.getString("email"), response.getString("created_at"), response.getString("updated_at"));
@@ -253,6 +272,7 @@ public class UsersProfileActivity extends BaseActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
+                        mProgressBar.setVisibility(View.GONE);
                         Toast.makeText(UsersProfileActivity.this, "Unable to to retrieve user data !", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -280,7 +300,7 @@ public class UsersProfileActivity extends BaseActivity {
             Toast.makeText(UsersProfileActivity.this, "Unable to create session data !", Toast.LENGTH_SHORT).show();
         }
 
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+        jsObjRequestFollow = new JsonObjectRequest
                 (Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -326,7 +346,7 @@ public class UsersProfileActivity extends BaseActivity {
                 });
 
         // Access the RequestQueue through your singleton class.
-        jsObjRequest.setTag("requestFollow");
-        VolleySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
+        jsObjRequestFollow.setTag("requestFollow");
+        VolleySingleton.getInstance(this).addToRequestQueue(jsObjRequestFollow);
     }
 }

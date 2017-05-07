@@ -6,10 +6,20 @@
 
     <include layout="@layout/toolbar_main"/>
 
+    <ProgressBar
+        android:id="@+id/progressbar_users_list"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_users_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
         android:scrollbars="vertical" />
+
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,8 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
     private RecyclerView mRecView;
     private UsersListAdapter mRecAdapter;
 
+    private ProgressBar mProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,7 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
                 .withToolbar(myToolbar)
                 .withTranslucentStatusBar(false)
                 .withSelectedItem(-1)
+                .withCloseOnClick(true)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Feed"),
                         new PrimaryDrawerItem().withName("Profile"),
@@ -71,6 +75,8 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
                     }
                 })
                 .build();
+
+        mProgressBar = (ProgressBar) findViewById(R.id.progressbar_users_list);
 
         requestUsersList();
     }
@@ -101,12 +107,17 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
     }
 
     private void requestUsersList() {
+
+        mProgressBar.setVisibility(View.VISIBLE);
+
         String url = getString(R.string.apiBaseURL) + "/api/v1/users";
 
         JsonArrayRequest request = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {
+
+                        mProgressBar.setVisibility(View.GONE);
 
                         for(int i = 0; i < jsonArray.length(); i++) {
                             try {
@@ -126,6 +137,8 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
+
+                        mProgressBar.setVisibility(View.GONE);
                         Toast.makeText(UsersListActivity.this, "Unable to fetch data: " + volleyError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });

@@ -55,6 +55,7 @@ public class SettingsActivity extends BaseActivity {
                 .withToolbar(myToolbar)
                 .withTranslucentStatusBar(false)
                 .withSelectedItem(-1)
+                .withCloseOnClick(true)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Feed"),
                         new PrimaryDrawerItem().withName("Profile"),

@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -44,6 +45,8 @@ public class RelationshipActivity extends BaseActivity implements UsersListAdapt
     private RecyclerView mRecView;
     private UsersListAdapter mRecAdapter;
 
+    private ProgressBar mProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,7 @@ public class RelationshipActivity extends BaseActivity implements UsersListAdapt
                 .withToolbar(myToolbar)
                 .withTranslucentStatusBar(false)
                 .withSelectedItem(-1)
+                .withCloseOnClick(true)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Feed"),
                         new PrimaryDrawerItem().withName("Profile"),
@@ -78,6 +82,8 @@ public class RelationshipActivity extends BaseActivity implements UsersListAdapt
         mTargetID = getIntent().getStringExtra("id");
         mActionType = getIntent().getStringExtra("action_type");
         getSupportActionBar().setTitle(mActionType);
+
+        mProgressBar = (ProgressBar) findViewById(R.id.progressbar_relationship);
 
         requestRelationshipsList();
     }
@@ -108,6 +114,8 @@ public class RelationshipActivity extends BaseActivity implements UsersListAdapt
     }
 
     private void requestRelationshipsList() {
+        mProgressBar.setVisibility(View.VISIBLE);
+
         String url = getString(R.string.apiBaseURL) + "/api/v1/relationships/" + mTargetID;
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
@@ -115,6 +123,8 @@ public class RelationshipActivity extends BaseActivity implements UsersListAdapt
 
                     @Override
                     public void onResponse(JSONObject response) {
+
+                        mProgressBar.setVisibility(View.GONE);
 
                         try {
 
@@ -169,6 +179,8 @@ public class RelationshipActivity extends BaseActivity implements UsersListAdapt
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
+                        mProgressBar.setVisibility(View.GONE);
 
                         NetworkResponse networkResponse = error.networkResponse;
 

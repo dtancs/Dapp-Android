@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
     private List<Micropost> mPostlist = new ArrayList<>();
 
     private boolean isRefresh = false;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
                 .withToolbar(myToolbar)
                 .withTranslucentStatusBar(false)
                 .withSelectedItem(-1)
+                .withCloseOnClick(true)
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName("Feed"),
                         new PrimaryDrawerItem().withName("Profile"),
@@ -91,6 +94,8 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
                 startActivity(intent);
             }
         });
+
+        mProgressBar = (ProgressBar) findViewById(R.id.progressbar_feed);
 
         SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), MODE_PRIVATE);
         mEmail = prefs.getString("email", "");
@@ -136,12 +141,16 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
     }
 
     private void requestUsersList() {
+        mProgressBar.setVisibility(View.VISIBLE);
+
         String url = getString(R.string.apiBaseURL) + "/api/v1/feed/" + mUserID;
 
         JsonArrayRequest request = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {
+
+                        mProgressBar.setVisibility(View.GONE);
 
                         for(int i = 0; i < jsonArray.length(); i++) {
                             try {
@@ -174,6 +183,7 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
+                        mProgressBar.setVisibility(View.GONE);
                         Toast.makeText(FeedActivity.this, "Unable to fetch data: " + volleyError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
