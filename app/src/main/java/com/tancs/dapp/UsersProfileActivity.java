@@ -46,6 +46,7 @@ public class UsersProfileActivity extends BaseActivity {
     private User mTargetUser;
     private List<Micropost> mPostlist = new ArrayList<>();
 
+    private TextView mUserNameView;
     private TextView mFollowersView;
     private TextView mFollowingView;
     private Button mFollowButton;
@@ -125,7 +126,7 @@ public class UsersProfileActivity extends BaseActivity {
     public void onResume() {
         super.onResume();
 
-        if(mPostlist.size() > 0) {
+        if(mUserNameView != null) {
             Intent intent = getIntent();
             finish();
             startActivity(intent);
@@ -169,7 +170,7 @@ public class UsersProfileActivity extends BaseActivity {
     }
 
         private void populateUser() {
-            TextView mUserNameView = (TextView) findViewById(R.id.textview_users_profile_name);
+            mUserNameView = (TextView) findViewById(R.id.textview_users_profile_name);
             mUserNameView.setText(mTargetUser.getName());
             getSupportActionBar().setTitle(mTargetUser.getName());
 
