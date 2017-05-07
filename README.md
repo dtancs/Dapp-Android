@@ -5,10 +5,12 @@ This project is the android companion app for dapp(https://github.com/dtancs/Dap
 dapp for android is a social app that allows users to create microposts to share with everyone.
 Users can also keep track of microposts made by other users by following them.
 
-## How it works ?
+## Stack
 
-This app is the mobile frontend that communicates with the Ruby on Rails backend via JSON based API calls.
-The backend project can be found here: https://github.com/dtancs/Dapp
+Android SDK
+Volley for network requests to rails API backend(https://github.com/dtancs/Dapp)
+Picasso for Gravatar Image loading
+mikepenz:materialdrawer for simple navigation drawer implementation
 
 ## Where can I download the app ?
 
