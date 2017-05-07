@@ -52,6 +52,13 @@ public class SignupActivity extends BaseActivity {
         confirmPasswordView = (EditText) findViewById(R.id.edittext_signup_confirmpassword);
     }
 
+    @Override
+    protected void onStop () {
+        super.onStop();
+
+        VolleySingleton.getInstance(this).getRequestQueue().cancelAll("requestSignup");
+    }
+
     public void clickSignup(View view) {
         requestSignup();
     }
@@ -157,6 +164,7 @@ public class SignupActivity extends BaseActivity {
                 });
 
         // Access the RequestQueue through your singleton class.
+        jsObjRequest.setTag("requestSignup");
         VolleySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
     }
 }

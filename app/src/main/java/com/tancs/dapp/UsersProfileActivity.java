@@ -123,6 +123,14 @@ public class UsersProfileActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onStop () {
+        super.onStop();
+
+        VolleySingleton.getInstance(this).getRequestQueue().cancelAll("requestUser");
+        VolleySingleton.getInstance(this).getRequestQueue().cancelAll("requestFollow");
+    }
+
     public void clickFollowers(View view) {
         Intent intent = new Intent(getBaseContext(), RelationshipActivity.class);
         intent.putExtra("id",mTargetID);
@@ -250,6 +258,7 @@ public class UsersProfileActivity extends BaseActivity {
                 });
 
         // Access the RequestQueue through your singleton class.
+        jsObjRequest.setTag("requestUser");
         VolleySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
     }
 
@@ -317,6 +326,7 @@ public class UsersProfileActivity extends BaseActivity {
                 });
 
         // Access the RequestQueue through your singleton class.
+        jsObjRequest.setTag("requestFollow");
         VolleySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
     }
 }

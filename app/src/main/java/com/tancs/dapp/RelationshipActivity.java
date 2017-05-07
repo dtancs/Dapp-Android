@@ -83,6 +83,13 @@ public class RelationshipActivity extends BaseActivity implements UsersListAdapt
     }
 
     @Override
+    protected void onStop () {
+        super.onStop();
+
+        VolleySingleton.getInstance(this).getRequestQueue().cancelAll("requestRelationshipsList");
+    }
+
+    @Override
     public void onItemClick(int p) {
         User item = mUserslist.get(p);
         //Toast.makeText(this, item.getId(), Toast.LENGTH_SHORT).show();
@@ -178,6 +185,7 @@ public class RelationshipActivity extends BaseActivity implements UsersListAdapt
 
 
         // Access the RequestQueue through your singleton class.
+        jsObjRequest.setTag("requestRelationshipsList");
         VolleySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
     }
 }

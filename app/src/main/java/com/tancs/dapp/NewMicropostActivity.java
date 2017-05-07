@@ -112,6 +112,14 @@ public class NewMicropostActivity extends BaseActivity {
     }
 
     @Override
+    protected void onStop () {
+        super.onStop();
+
+        VolleySingleton.getInstance(this).getRequestQueue().cancelAll("requestPost");
+    }
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_post, menu);
@@ -189,6 +197,7 @@ public class NewMicropostActivity extends BaseActivity {
                 });
 
         // Access the RequestQueue through your singleton class.
+        jsObjRequest.setTag("requestPost");
         VolleySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
     }
 

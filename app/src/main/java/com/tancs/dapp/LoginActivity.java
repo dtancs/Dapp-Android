@@ -43,6 +43,13 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onStop () {
+        super.onStop();
+
+        VolleySingleton.getInstance(this).getRequestQueue().cancelAll("requestAuthentication");
+    }
+
     public void clickLogin(View view) {
         requestAuthentication();
     }
@@ -128,6 +135,7 @@ public class LoginActivity extends BaseActivity {
                 });
 
         // Access the RequestQueue through your singleton class.
+        jsObjRequest.setTag("requestAuthentication");
         VolleySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
     }
 }

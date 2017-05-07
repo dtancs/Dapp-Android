@@ -111,6 +111,13 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
     }
 
     @Override
+    protected void onStop () {
+        super.onStop();
+
+        VolleySingleton.getInstance(this).getRequestQueue().cancelAll("FeedActivity");
+    }
+
+    @Override
     public void onItemClick(int p) {
         Micropost item = (Micropost) mPostlist.get(p);
         //Toast.makeText(this, item.getId(), Toast.LENGTH_SHORT).show();
@@ -173,6 +180,7 @@ public class FeedActivity extends BaseActivity implements FeedListAdapter.ItemCl
 
 
         // Access the RequestQueue through your singleton class.
+        request.setTag("FeedActivity");
         VolleySingleton.getInstance(this).addToRequestQueue(request);
     }
 }

@@ -76,6 +76,13 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
     }
 
     @Override
+    protected void onStop () {
+        super.onStop();
+
+        VolleySingleton.getInstance(this).getRequestQueue().cancelAll("requestUsersList");
+    }
+
+    @Override
     public void onItemClick(int p) {
         User item = mUserslist.get(p);
         //Toast.makeText(this, item.getId(), Toast.LENGTH_SHORT).show();
@@ -125,6 +132,7 @@ public class UsersListActivity extends BaseActivity implements UsersListAdapter.
 
 
         // Access the RequestQueue through your singleton class.
+        request.setTag("requestUsersList");
         VolleySingleton.getInstance(this).addToRequestQueue(request);
     }
 }
